@@ -25,8 +25,9 @@ public class Notebook {
     private Date created;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "notebook")
     private List<Note> noteList = new ArrayList<>();
 }

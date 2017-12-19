@@ -24,6 +24,6 @@ public class User {
     private String name;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Notebook> notebookList = new ArrayList<>();
 }

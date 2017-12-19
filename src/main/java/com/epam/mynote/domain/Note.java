@@ -23,6 +23,10 @@ public class Note {
     private String name;
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name = "notebook_id")
+    private Notebook notebook;
+
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Label> labelList = new ArrayList<>();
 }
