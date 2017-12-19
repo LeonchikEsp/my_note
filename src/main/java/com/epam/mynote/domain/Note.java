@@ -5,12 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "Note")
+@Table(name = "note")
 public class Note {
 
     @Id
@@ -21,6 +23,6 @@ public class Note {
     private String name;
     private String content;
 
-    @ManyToMany
-    private List<Label> labelList;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Label> labelList = new ArrayList<>();
 }

@@ -5,7 +5,6 @@ import com.epam.mynote.repository.UserRepository;
 import com.epam.mynote.service.UserService;
 import org.springframework.stereotype.Service;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 @Service
@@ -17,16 +16,24 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    User getUser(Long id){
-        return userRepository.getOne(id);
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.findUserById(id);
     }
 
-    List<User> getAllUsers(){
+    @Override
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    User saveUser(User user){
-        return userRepository.save(user);
+    @Override
+    public boolean deleteUserById(Long id) {
+        return userRepository.deleteUserById(id);
     }
 
+    @Override
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
 }

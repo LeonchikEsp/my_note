@@ -5,13 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "Notebook")
+@Table(name = "notebook")
 public class Notebook {
 
     @Id
@@ -25,6 +27,6 @@ public class Notebook {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "notebook", cascade = CascadeType.ALL)
-    private List<Note> noteList;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Note> noteList = new ArrayList<>();
 }

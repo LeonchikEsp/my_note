@@ -1,7 +1,6 @@
 package com.epam.mynote.service;
 
 import com.epam.mynote.domain.Label;
-import com.epam.mynote.domain.User;
 
 import java.util.List;
 
