@@ -1,7 +1,6 @@
 package com.epam.mynote.service.impl;
 
 import com.epam.mynote.domain.Label;
-import com.epam.mynote.domain.User;
 import com.epam.mynote.repository.LabelRepository;
 import com.epam.mynote.service.LabelService;
 import org.springframework.stereotype.Service;
