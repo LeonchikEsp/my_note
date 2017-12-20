@@ -3,6 +3,8 @@ package com.epam.mynote.controllers;
 import com.epam.mynote.domain.User;
 import com.epam.mynote.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,22 +20,32 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/{id}")
-    public User getUserById(@PathVariable("id") Long id) {
-        return userService.getUserById(id);
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
+        User user = userService.getUserById(id);
+        if (user == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+
     }
 
     @PostMapping(value = "/user")
-    public User saveUser(@RequestBody User user) {
-        return userService.saveUser(user);
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
+        user = userService.saveUser(user);
+        if (user == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @GetMapping(value = "/user")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public ResponseEntity<List<User>> getAllUsers() {
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/user/{id}")
-    public boolean deleteUserById(@PathVariable("id") Long id) {
-        return userService.deleteUserById(id);
+    public ResponseEntity<Integer> deleteUserById(@PathVariable("id") Long id) {
+        Integer successfulDelete = userService.deleteUserById(id);
+        if (successfulDelete == 0)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(successfulDelete, HttpStatus.OK);
     }
 }
