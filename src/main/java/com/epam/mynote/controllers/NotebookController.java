@@ -21,17 +21,17 @@ public class NotebookController {
     }
 
     @PostMapping(value = "/user/{userId}/notebook")
-    public Notebook saveNotebook(@PathVariable("userId") Long userId, @RequestBody Notebook notebook) {
+    public Notebook saveNotebookByUserId(@PathVariable("userId") Long userId, @RequestBody Notebook notebook) {
         return notebookService.saveNotebookByUserId(notebook, userId);
     }
 
     @GetMapping(value = "/user/{userId}/notebook/{notebookId}")
-    public Notebook getAllUsers(@PathVariable("userId") Long userId, @PathVariable("notebookId") Long notebookId) {
+    public Notebook getNotebookByIdAndUserId(@PathVariable("userId") Long userId, @PathVariable("notebookId") Long notebookId) {
         return notebookService.getNotebookByIdAndUserId(notebookId, userId);
     }
 
     @DeleteMapping(value = "/user/{userId}/notebook/{notebookId}")
-    public Integer deleteUserById(@PathVariable("userId") Long userId, @PathVariable("notebookId") Long notebookId) {
+    public Integer deleteNotebookByIdByUserId(@PathVariable("userId") Long userId, @PathVariable("notebookId") Long notebookId) {
         return notebookService.deleteNotebookByIdByUserId(notebookId, userId);
     }
 }
