@@ -1,5 +1,6 @@
 package com.epam.mynote.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,5 +29,11 @@ public class Note {
     private Notebook notebook;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "note_label",
+            joinColumns = @JoinColumn(name = "note_id"),
+            inverseJoinColumns = @JoinColumn(name = "label_id")
+    )
+    @JsonIgnore
     private List<Label> labelList = new ArrayList<>();
 }

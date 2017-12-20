@@ -1,5 +1,6 @@
 package com.epam.mynote.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,5 +30,6 @@ public class Notebook {
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "notebook")
+    @JsonIgnore
     private List<Note> noteList = new ArrayList<>();
 }
