@@ -1,18 +1,17 @@
 package com.epam.mynote.service;
 
 import com.epam.mynote.domain.Notebook;
-import com.epam.mynote.domain.User;
 
 import java.util.List;
 
 public interface NotebookService {
 
-    Notebook getNotebookByIdAndUser(Long id, User user);
+    Notebook getNotebookByIdAndUserId(Long id, Long userId);
 
-    List<Notebook> getAllNotebooksByUser();
+    List<Notebook> getAllNotebooksByUserId(Long userId);
 
-    boolean deleteNotebookByIdByUser(Long id);
+    Integer deleteNotebookByIdByUserId(Long id, Long userId);
 
-    Notebook saveNotebookByUser(Notebook user);
+    Notebook saveNotebookByUserId(Notebook notebook, Long userId);
 
 }

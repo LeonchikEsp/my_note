@@ -23,6 +23,9 @@ public class Notebook {
     private Long id;
 
     private String name;
+
+    @Column(insertable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
     @ManyToOne
