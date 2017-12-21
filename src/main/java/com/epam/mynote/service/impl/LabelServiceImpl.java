@@ -1,5 +1,6 @@
 package com.epam.mynote.service.impl;
 
+import com.epam.mynote.aspect.LogForExecutionTime;
 import com.epam.mynote.domain.Label;
 import com.epam.mynote.domain.Note;
 import com.epam.mynote.domain.User;
@@ -32,6 +33,7 @@ public class LabelServiceImpl implements LabelService {
         this.userRepository = userRepository;
     }
 
+    @LogForExecutionTime
     @Override
     public Label getLabelByIdAndUserId(Long labelId, Long userId) {
         if (labelId != null && userId != null)
@@ -39,6 +41,7 @@ public class LabelServiceImpl implements LabelService {
         return null;
     }
 
+    @LogForExecutionTime
     @Override
     public List<Note> getNotesByLabels(Long labelId, Long userId) {
         if (labelId != null && userId != null) {
@@ -48,6 +51,7 @@ public class LabelServiceImpl implements LabelService {
         return null;
     }
 
+    @LogForExecutionTime
     @Override
     public Label createLabelByUserId(Label label, Long userId) {
         if (label != null && userId != null) {
@@ -63,6 +67,7 @@ public class LabelServiceImpl implements LabelService {
         return null;
     }
 
+    @LogForExecutionTime
     @Override
     public Integer deleteLabelByIdByUserId(Long labelId, Long userId) {
         User user = userRepository.findUserById(userId);
@@ -73,11 +78,13 @@ public class LabelServiceImpl implements LabelService {
         return null;
     }
 
+    @LogForExecutionTime
     @Override
     public List<Label> getAllMarksByUserId(Long userId) {
         return labelRepository.getAllByUserId(userId);
     }
 
+    @LogForExecutionTime
     @Override
     public String markNote(Long labelId, Long noteId, Long userId) {
         Label label = labelRepository.getByIdAndUserId(labelId, userId);
@@ -89,6 +96,7 @@ public class LabelServiceImpl implements LabelService {
         return null;
     }
 
+    @LogForExecutionTime
     @Override
     public String unMarkNote(Long labelId, Long noteId, Long userId) {
         Label label = labelRepository.getByIdAndUserId(labelId, userId);
