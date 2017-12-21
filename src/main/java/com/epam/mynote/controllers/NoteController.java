@@ -1,6 +1,7 @@
 package com.epam.mynote.controllers;
 
 import com.epam.mynote.domain.Note;
+import com.epam.mynote.service.LabelService;
 import com.epam.mynote.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,12 @@ public class NoteController {
 
     private final NoteService noteService;
 
+    private final LabelService labelService;
+
     @Autowired
-    public NoteController(NoteService noteService) {
+    public NoteController(NoteService noteService, LabelService labelService) {
         this.noteService = noteService;
+        this.labelService = labelService;
     }
 
     @GetMapping(value = "/user/{userId}/note")
@@ -39,6 +43,12 @@ public class NoteController {
     public Integer deleteUserById(@PathVariable("userId") Long userId,
                                   @PathVariable("noteId") Long noteId) {
         return noteService.deleteNoteByIdByUserId(noteId, userId);
+    }
+
+    @GetMapping(value = "/user/{userId}/label/{labelId}")
+    public List<Note> getNotesByLabels(@PathVariable("userId") Long userId,
+                                       @PathVariable("labelId") Long labelId) {
+        return labelService.getNotesByLabels(labelId, userId);
     }
 
 }
