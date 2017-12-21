@@ -26,4 +26,8 @@ public class Label {
     @ManyToMany(mappedBy = "labelList", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Note> noteList = new ArrayList<>();
+
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
