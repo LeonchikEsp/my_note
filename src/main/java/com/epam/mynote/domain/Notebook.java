@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.springframework.data.annotation.CreatedDate;
 
 @Data
 @AllArgsConstructor
@@ -24,12 +25,9 @@ public class Notebook {
 
     private String name;
 
-    @Column(insertable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "notebook")

@@ -9,6 +9,8 @@ public interface NotebookRepository extends JpaRepository<Notebook, Long> {
 
     Notebook findNotebookByIdAndUserId(Long id, Long userId);
 
+    Notebook findNotebookById(Long notebookId);
+
     List<Notebook> findAllByUserId(Long userId);
 
     Integer deleteNotebookByIdAndUser_Id(Long id, Long userId);
