@@ -1,5 +1,6 @@
 package com.epam.mynote.service.impl;
 
+import com.epam.mynote.aspect.LogForExecutionTime;
 import com.epam.mynote.domain.Notebook;
 import com.epam.mynote.domain.User;
 import com.epam.mynote.exceptions.AccessDeniedException;
@@ -43,6 +44,7 @@ public class NotebookServiceImpl implements NotebookService {
         return notebook;
     }
 
+    @LogForExecutionTime
     @Override
     public List<Notebook> getAllNotebooksByUserId(Long userId) {
         if (!Validator.validId(userId))
@@ -53,6 +55,7 @@ public class NotebookServiceImpl implements NotebookService {
         return notebookRepository.findAllByUserId(userId);
     }
 
+    @LogForExecutionTime
     @Override
     public Integer deleteNotebookByIdByUserId(Long notebookId, Long userId) {
         if (!Validator.validId(notebookId) || !Validator.validId(userId))
@@ -61,6 +64,7 @@ public class NotebookServiceImpl implements NotebookService {
         return notebookRepository.deleteNotebookByIdAndUser_Id(notebookId, userId);
     }
 
+    @LogForExecutionTime
     @Override
     public Notebook saveNotebookByUserId(Notebook notebook, Long userId) {
         Notebook newNotebook = new Notebook();
