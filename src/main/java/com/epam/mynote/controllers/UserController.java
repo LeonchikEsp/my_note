@@ -12,12 +12,8 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private final UserService userService;
-
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private UserService userService;
 
     @GetMapping(value = "/user/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
