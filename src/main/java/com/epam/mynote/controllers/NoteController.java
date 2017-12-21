@@ -1,5 +1,6 @@
 package com.epam.mynote.controllers;
 
+import com.epam.mynote.domain.Label;
 import com.epam.mynote.domain.Note;
 import com.epam.mynote.service.LabelService;
 import com.epam.mynote.service.NoteService;
@@ -45,10 +46,9 @@ public class NoteController {
         return noteService.deleteNoteByIdByUserId(noteId, userId);
     }
 
-    @GetMapping(value = "/user/{userId}/label/{labelId}")
+    @GetMapping(value = "/user/{userId}/note/label/{labelId}")
     public List<Note> getNotesByLabels(@PathVariable("userId") Long userId,
                                        @PathVariable("labelId") Long labelId) {
         return labelService.getNotesByLabels(labelId, userId);
     }
-
 }
