@@ -1,25 +1,29 @@
 package com.epam.mynote.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "Label")
+@Table(name = "label")
 public class Label {
 
     @Id
     @Column(unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Note> noteList;
+    @ManyToMany(mappedBy = "labelList", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Note> noteList = new ArrayList<>();
 }
