@@ -1,5 +1,6 @@
 package com.epam.mynote.service.impl;
 
+import com.epam.mynote.aspect.LogForExecutionTime;
 import com.epam.mynote.domain.Notebook;
 import com.epam.mynote.domain.User;
 import com.epam.mynote.repository.NotebookRepository;
@@ -28,16 +29,19 @@ public class NotebookServiceImpl implements NotebookService {
         return notebookRepository.findNotebookByIdAndUserId(id, userId);
     }
 
+    @LogForExecutionTime
     @Override
     public List<Notebook> getAllNotebooksByUserId(Long userId) {
         return notebookRepository.findAllByUserId(userId);
     }
 
+    @LogForExecutionTime
     @Override
     public Integer deleteNotebookByIdByUserId(Long id, Long userId) {
         return notebookRepository.deleteNotebookByIdAndUser_Id(id, userId);
     }
 
+    @LogForExecutionTime
     @Override
     public Notebook saveNotebookByUserId(Notebook notebook, Long userId) {
         Notebook newNotebook = new Notebook();
