@@ -21,7 +21,7 @@ public class LabelController {
         return labelService.getLabelByIdAndUserId(labelId, userId);
     }
 
-    @PostMapping(value = "/user/{userId}/label/{labelId}")
+    @PostMapping(value = "/user/{userId}/label")
     public Label createLabelByUserId(@PathVariable("userId") Long userId,
                                      @RequestBody Label label) {
         return labelService.createLabelByUserId(label, userId);
