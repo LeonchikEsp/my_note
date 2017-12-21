@@ -27,8 +27,12 @@ public class User {
     private String name;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
     private List<Notebook> notebookList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Label> labelList = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
