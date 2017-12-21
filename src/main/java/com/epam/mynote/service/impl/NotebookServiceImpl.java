@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 @Service
 public class NotebookServiceImpl implements NotebookService {
 
@@ -32,7 +33,6 @@ public class NotebookServiceImpl implements NotebookService {
         return notebookRepository.findAllByUserId(userId);
     }
 
-    @Transactional
     @Override
     public Integer deleteNotebookByIdByUserId(Long id, Long userId) {
         return notebookRepository.deleteNotebookByIdAndUser_Id(id, userId);

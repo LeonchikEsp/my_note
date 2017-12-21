@@ -5,9 +5,11 @@ import com.epam.mynote.repository.UserRepository;
 import com.epam.mynote.service.UserService;
 import com.epam.mynote.util.Validator;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 @Service
 public class UserServiceImpl implements UserService {
 
