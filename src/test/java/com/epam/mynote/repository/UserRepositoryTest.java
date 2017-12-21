@@ -31,7 +31,7 @@ public class UserRepositoryTest {
 
     @Test
     public void whenGetUserById_thenReturnUser() {
-        User user = new User(1L, "test_guy", null);
+        User user = new User(1L, "test_guy", null, null);
 
         User attachedTestUser = entityManager.merge(user);
         entityManager.flush();
@@ -45,7 +45,7 @@ public class UserRepositoryTest {
 
     @Test
     public void whenDeleteUserById_thenReturnOne() {
-        User user = new User(1L, "test_guy", null);
+        User user = new User(1L, "test_guy", null, null);
 
         User attachedTestUser = entityManager.merge(user);
         entityManager.flush();
@@ -58,7 +58,7 @@ public class UserRepositoryTest {
 
     @Test
     public void whenSaveUser_thenReturnUser() {
-        User user = new User(1L, "test_guy", null);
+        User user = new User(1L, "test_guy", null, null);
 
         User attachedTestUser = entityManager.merge(user);
         entityManager.flush();
@@ -71,8 +71,8 @@ public class UserRepositoryTest {
 
     @Test
     public void whenFindAllUsers_thenReturnListOfUsers() {
-        User user1 = new User(1L, "test_guy", null);
-        User user2 = new User(2L, "test_guy2", null);
+        User user1 = new User(1L, "test_guy", null, null);
+        User user2 = new User(2L, "test_guy2", null, null);
 
         User attachedTestUser = entityManager.merge(user1);
         User attachedTestUser2 = entityManager.merge(user2);

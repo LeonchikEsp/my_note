@@ -48,18 +48,13 @@ public class User {
         if (!id.equals(user.id)) {
             return false;
         }
-        if (!name.equals(user.name)) {
-            return false;
-        }
-        return notebookList != null ? notebookList.equals(user.notebookList)
-            : user.notebookList == null;
+        return name.equals(user.name);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + name.hashCode();
-        result = 31 * result + (notebookList != null ? notebookList.hashCode() : 0);
         return result;
     }
 }
