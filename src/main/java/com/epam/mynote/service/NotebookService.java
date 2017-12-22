@@ -3,7 +3,9 @@ package com.epam.mynote.service;
 import com.epam.mynote.domain.Notebook;
 
 import java.util.List;
+import javax.transaction.Transactional;
 
+@Transactional
 public interface NotebookService {
 
     Notebook getNotebookByIdAndUserId(Long id, Long userId);
