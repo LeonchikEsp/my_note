@@ -7,6 +7,7 @@ import com.epam.mynote.repository.NoteRepository;
 import com.epam.mynote.repository.NotebookRepository;
 import com.epam.mynote.repository.UserRepository;
 import com.epam.mynote.service.NoteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,17 +17,12 @@ import java.util.List;
 @Service
 public class NoteServiceImpl implements NoteService {
 
-    private final NotebookRepository notebookRepository;
-
-    private final NoteRepository noteRepository;
-
-    private final UserRepository userRepository;
-
-    public NoteServiceImpl(NotebookRepository notebookRepository, NoteRepository noteRepository, UserRepository userRepository) {
-        this.notebookRepository = notebookRepository;
-        this.noteRepository = noteRepository;
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private NotebookRepository notebookRepository;
+    @Autowired
+    private NoteRepository noteRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @LogForExecutionTime
     @Override
@@ -61,8 +57,8 @@ public class NoteServiceImpl implements NoteService {
             newNote.setContent(note.getContent());
             newNote.setName(note.getName());
             newNote.setNotebook(notebook);
-
-            return noteRepository.save(newNote);
+            Note note1 = noteRepository.save(newNote);
+            return note1;
         }
         return null;
     }
