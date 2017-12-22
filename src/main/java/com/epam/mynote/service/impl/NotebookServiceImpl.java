@@ -26,9 +26,6 @@ public class NotebookServiceImpl implements NotebookService {
     private NotebookRepository notebookRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
     @Override
@@ -49,9 +46,8 @@ public class NotebookServiceImpl implements NotebookService {
     public List<Notebook> getAllNotebooksByUserId(Long userId) {
         if (!Validator.validId(userId))
             throw new InvalidDataException("invalid userId");
-        if (userService.getUserById(userId) == null) {
+        if (userService.getUserById(userId) == null)
             throw new NoUserFoundException("no user found");
-        }
         return notebookRepository.findAllByUserId(userId);
     }
 
@@ -60,20 +56,21 @@ public class NotebookServiceImpl implements NotebookService {
     public Integer deleteNotebookByIdByUserId(Long notebookId, Long userId) {
         if (!Validator.validId(notebookId) || !Validator.validId(userId))
             throw new InvalidDataException("invalid data to proceed");
-        getNotebookByIdAndUserId(notebookId, userId);
+        Notebook notebook = getNotebookByIdAndUserId(notebookId, userId);
+        if (notebook == null)
+            throw new NoNotebookFoundException("no notebook to delete");
         return notebookRepository.deleteNotebookByIdAndUser_Id(notebookId, userId);
     }
 
     @LogForExecutionTime
     @Override
     public Notebook saveNotebookByUserId(Notebook notebook, Long userId) {
-        Notebook newNotebook = new Notebook();
-        User user = userRepository.findUserById(userId);
-        if (user != null) {
-            newNotebook.setUser(user);
-            newNotebook.setName(notebook.getName());
-            return notebookRepository.save(newNotebook);
-        }
-        return null;
+        if (Validator.validId(userId))
+            throw new InvalidDataException("invalid userId to add or update notebook");
+        User user = userService.getUserById(userId);
+        if (user == null)
+            throw new NoUserFoundException("no user found");
+        notebook.setUser(user);
+        return notebook;
     }
 }
