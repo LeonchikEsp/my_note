@@ -26,9 +26,6 @@ public class NotebookServiceImpl implements NotebookService {
     private NotebookRepository notebookRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
     @Override
@@ -75,13 +72,5 @@ public class NotebookServiceImpl implements NotebookService {
             throw new NoUserFoundException("no user found");
         notebook.setUser(user);
         return notebook;
-        /*Notebook newNotebook = new Notebook();
-        User user = userRepository.findUserById(userId);
-        if (user != null) {
-            newNotebook.setUser(user);
-            newNotebook.setName(notebook.getName());
-            return notebookRepository.save(newNotebook);
-        }
-        return null;*/
     }
 }

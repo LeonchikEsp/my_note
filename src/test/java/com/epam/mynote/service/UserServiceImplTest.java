@@ -18,10 +18,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class UserServiceImplTest {
     @TestConfiguration
-    static class EmployeeServiceImplTestContextConfiguration {
+    static class UserServiceImplTestContextConfiguration {
 
         @Bean
-        public UserService employeeService() {
+        public UserService userService() {
             return new UserServiceImpl();
         }
     }
