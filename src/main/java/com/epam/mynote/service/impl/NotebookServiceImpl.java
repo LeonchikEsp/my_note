@@ -5,6 +5,7 @@ import com.epam.mynote.domain.Notebook;
 import com.epam.mynote.domain.User;
 import com.epam.mynote.exceptions.AccessDeniedException;
 import com.epam.mynote.exceptions.InvalidDataException;
+import com.epam.mynote.exceptions.NoNoteFoundException;
 import com.epam.mynote.exceptions.NoNotebookFoundException;
 import com.epam.mynote.exceptions.NoUserFoundException;
 import com.epam.mynote.repository.NotebookRepository;
@@ -48,7 +49,11 @@ public class NotebookServiceImpl implements NotebookService {
             throw new InvalidDataException("invalid userId");
         if (userService.getUserById(userId) == null)
             throw new NoUserFoundException("no user found");
-        return notebookRepository.findAllByUserId(userId);
+
+        List<Notebook> notebookList = notebookRepository.findAllByUserId(userId);
+        if (notebookList.size() == 0)
+            throw new NoNotebookFoundException("user doesnt has notebooks");
+        return notebookList;
     }
 
     @LogForExecutionTime
